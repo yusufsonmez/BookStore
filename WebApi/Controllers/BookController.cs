@@ -45,6 +45,7 @@ namespace WebApi.AddConstrollers{
             return book;
         }
 
+        // With FROMQUERY
         // [HttpGet]
         // public Book Get( [FromQuery] string id)
         // {
