@@ -48,7 +48,7 @@ namespace WebApi.AddConstrollers{
 
 
          [HttpGet("{id}")]
-        public Book GetById(int id)
+        public Book? GetById(int id)
         {
             var book = _context.Books.Where(book=>book.Id==id).SingleOrDefault();
 

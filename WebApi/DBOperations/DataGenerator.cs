@@ -4,42 +4,45 @@ namespace WebApi.DBOperations
 {
     public class DataGenerator
     {
-        //ugulama ilk çalıştıgında bu çalısacak
+        // When program running this part will be run first
         public static void Initialize(IServiceProvider serviceProvider)
+        
         {
-            using(var context = new BookStoreDbContext(serviceProvider.GetRequiredService<DbContextOptions<BookStoreDbContext>>()))
+        using (var context = new BookStoreDbContext(serviceProvider.GetRequiredService<DbContextOptions<BookStoreDbContext>>()))
             {
-                if(context.Books.Any())
+                if (context.Books.Any())
                 {
                     return;
                 }
-                
-                    context.Books.AddRange(
-                           new Book{
-                Id = 1,
-                Title = "Lean Startup",
-                GenreId = 1, //Personal Growth
-                PageCount = 200,
-                PublishDate = new DateTime(2001,06,12)
-            },
+                context.Books.AddRange(
+                    new Book
+                    {
+                        //ID = 1,
+                        Title = "Suc ve Ceza",
+                        GenreId = 1, // Novel
+                        PageCount = 450,
+                        PublishDate = new DateTime(1985, 06, 12),
 
-            new Book{
-                Id = 2,
-                Title = "Herland",
-                GenreId = 1, //Science Fiction
-                PageCount = 250,
-                PublishDate = new DateTime(2010,05,23)
-            },
-            new Book{
-                Id = 3,
-                Title = "Dune",
-                GenreId = 1, //Science Fiction
-                PageCount = 540,
-                PublishDate = new DateTime(2010,12,21)
-            });
+                    },
+                    new Book
+                    {
+                        //ID = 2,
+                        Title = "1984",
+                        GenreId = 2, // History
+                        PageCount = 400,
+                        PublishDate = new DateTime(1984, 03, 10),
 
-            context.SaveChanges();
-                
+                    },
+                    new Book
+                    {
+                        //ID = 3,
+                        Title = "Aspidistra",
+                        GenreId = 1, // Novel
+                        PageCount = 200,
+                        PublishDate = new DateTime(1999, 09, 20),
+
+                    });
+                context.SaveChanges();
             }
         }
     }
