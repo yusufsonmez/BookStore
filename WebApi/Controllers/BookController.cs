@@ -109,9 +109,9 @@ namespace WebApi.AddConstrollers{
                 command.BookId = id;
                 command.Handle();
             }
-            catch
+            catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         
              return Ok();
