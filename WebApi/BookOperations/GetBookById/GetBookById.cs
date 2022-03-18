@@ -28,7 +28,6 @@ namespace WebApi.BookOperations.GetBooks
             }
             return new BookIdViewModel()
             {
-                GenreId = book.GenreId,
                 PageCount = book.PageCount,
                 PublishDate = book.PublishDate,
                 Title = book.Title
@@ -40,7 +39,7 @@ namespace WebApi.BookOperations.GetBooks
         public string Title { get; set; }
         public int PageCount { get; set; }
         public DateTime PublishDate { get; set; }
-        public int GenreId { get; set; }
+        public string Genre { get; set; }
     }
     }
     
