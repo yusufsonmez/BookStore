@@ -1,4 +1,5 @@
 
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Common;
 using WebApi.DBOperations;
@@ -10,21 +11,20 @@ namespace WebApi.BookOperations
         {
             public CreateBookModel Model {get;set;}
             private readonly BookStoreDbContext _dbContext;
-            public CreateBookCommand(BookStoreDbContext dbContext)
-            {
-                _dbContext = dbContext;
-            }
+            private readonly IMapper _mapper;
+        public CreateBookCommand(BookStoreDbContext dbContext, IMapper mapper)
+        {
+            _dbContext = dbContext;
+            _mapper = mapper;
+        }
 
-            public void Handle()
+        public void Handle()
             {
             var book = _dbContext.Books.SingleOrDefault(x=> x.Title == Model.Title);
             if(book is not null)
-               throw new InvalidOperationException("Kitap zaten mevcut");
-            book = new Book();
-            book.Title = Model.Title;
-            book.PublishDate = Model.PublishDate;
-            book.PageCount = Model.PageCount;
-            book.GenreId = Model.GenreId;
+               throw new InvalidOperationException("The book is already exist.");
+            // Model ile gelen veriyi book objesine convert et. Zaten CreateBookModelden geliyor burdaki model   
+            book = _mapper.Map<Book>(Model); // new Book();
 
             _dbContext.Books.Add(book);
             _dbContext.SaveChanges();
