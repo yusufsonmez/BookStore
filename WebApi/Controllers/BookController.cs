@@ -12,7 +12,7 @@ using static WebApi.BookOperations.GetBooks.GetBookById;
 using static WebApi.BookOperations.UpdateBook.UpdateBookCommand;
 
 
-namespace WebApi.AddConstrollers{
+namespace WebApi.Controllers{
 
 [ApiController]
 [Route("[controller]s")]

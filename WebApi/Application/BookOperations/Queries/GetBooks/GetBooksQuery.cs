@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.Common;
 using WebApi.DBOperations;
 using AutoMapper;
+using WebApi.Entities;
 
 namespace WebApi.BookOperations.GetBooks
 {
